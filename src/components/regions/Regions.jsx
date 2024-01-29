@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { getRegionsList } from "../apis/regions";
+import List from "../list/List";
 
 const Regions = () => {
   const [regions, setRegions] = useState([]);
 
   useEffect(() => {
-    // Define a function to fetch data
     const fetchData = async () => {
       try {
-        const data = await getRegionsList(); // Use await here
+        const data = await getRegionsList();
         console.log(data);
         setRegions(data);
       } catch (error) {
@@ -16,17 +16,17 @@ const Regions = () => {
       }
     };
 
-    // Call the fetch data function
     fetchData();
 
-    // The cleanup function (optional) - will be called when the component unmounts
     return () => {
-      // Perform cleanup, if needed
       console.log("Cleanup function called");
     };
   }, []);
 
-  return <div>{regions.map((region) => region.nombre)}</div>;
+  return (
+    <div>
+      <List data={regions}></List>
+    </div>
+  );
 };
-
 export default Regions;
