@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Route, Navigate, Routes } from 'react-router-d
 import Regions from './components/regions/Regions';
 import Region from './components/region/Region';
 import Entidad from './components/entidad/Entidad';
+import Convocatoria from './components/convocatoria/Convocatoria';
 
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
 
         <Route path="/region/:slug" element={<Region/>} />
         <Route path="/entidad/:slug" element={<Entidad/>} />
+        <Route path="/convocatoria/:slug" element={<Convocatoria/>} />
       </Routes>
     </Router>
   );
