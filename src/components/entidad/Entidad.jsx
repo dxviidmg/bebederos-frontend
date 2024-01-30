@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom";
 
 
 const Entidad = () => {
-  const [entidades, setEntidades] = useState([]);
+  const [convocatorias, setConvocatorias] = useState([]);
   const [title, setTitle] = useState("");
   const { slug } = useParams();
 
@@ -14,8 +14,7 @@ const Entidad = () => {
     const fetchData = async () => {
       try {
         const data = await getEntidadDetail(slug);
-        console.log(data);
-        setEntidades(data.convocatorias);
+        setConvocatorias(data.convocatorias);
         setTitle(data.texto + ": " + data.nombre)
     } catch (error) {
         console.error("Error fetching data:", error);
@@ -31,7 +30,7 @@ const Entidad = () => {
 
   return (
     <div>
-      <List data={entidades} type="convocatoria" title={title}></List>
+      <List data={convocatorias} type="convocatoria" title={title}></List>
     </div>
   );
 };
