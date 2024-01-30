@@ -1,4 +1,5 @@
 import { Container, Row, Col, Image } from "react-bootstrap";
+import { Link } from 'react-router-dom';
 import './list.css'
 
 const List = ({ data }) => {
@@ -7,10 +8,9 @@ const List = ({ data }) => {
         <Row>
           {data.map((item, index) => (
             <Col key={index}>
-              {" "}
-              <Image src={item.image} rounded />
+              <Link to={`/region/${item.id}`}>              <Image src={item.image} rounded />
               <h1>{item.texto}</h1>
-              <h2>{item.nombre}</h2>
+              <h2>{item.nombre}</h2></Link>
             </Col>
           ))}
         </Row>
