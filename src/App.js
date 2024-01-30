@@ -4,6 +4,7 @@ import Login from "./components/login/Login";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter as Router, Route, Navigate, Routes } from 'react-router-dom';
 import Regions from './components/regions/Regions';
+import Region from './components/region/Region';
 
 
 function App() {
@@ -13,6 +14,8 @@ function App() {
       <Route path="/regions" element={<Regions/>} />
         <Route path="/login" element={<Login/>} />
         <Route path="/" element={<Login/>} />
+
+        <Route path="/region/:slug" element={<Region/>} />
       </Routes>
     </Router>
   );
