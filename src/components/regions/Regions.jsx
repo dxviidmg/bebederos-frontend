@@ -25,7 +25,7 @@ const Regions = () => {
 
   return (
     <div>
-      <List data={regions} type="region"></List>
+      <List data={regions} type="region"  title="Regiones"></List>
     </div>
   );
 };

@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { getRegionDetail } from "../apis/region";
+import { getEntidadDetail } from "../apis/entidad";
 import List from "../list/List";
 import { useParams } from "react-router-dom";
 
 
-const Region = () => {
+const Entidad = () => {
   const [entidades, setEntidades] = useState([]);
   const [title, setTitle] = useState("");
   const { slug } = useParams();
@@ -13,11 +13,11 @@ const Region = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const data = await getRegionDetail(slug);
+        const data = await getEntidadDetail(slug);
         console.log(data);
-        setEntidades(data.entidades);
+        setEntidades(data.convocatorias);
         setTitle(data.texto + ": " + data.nombre)
-      } catch (error) {
+    } catch (error) {
         console.error("Error fetching data:", error);
       }
     };
@@ -31,8 +31,8 @@ const Region = () => {
 
   return (
     <div>
-      <List data={entidades} type="entidad" title={title}></List>
+      <List data={entidades} type="convocatoria" title={title}></List>
     </div>
   );
 };
-export default Region;
+export default Entidad;
