@@ -25,7 +25,7 @@ const Region = () => {
 
   return (
     <div>
-      <List data={entidades}></List>
+      <List data={entidades} type={"entidad"}></List>
     </div>
   );
 };
