@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import { Container, Row, Col, Alert } from "react-bootstrap";
 import { loginUser } from "../apis/login";
+import { useNavigate } from 'react-router-dom';
 
-function Login({ onLogin }) {
+
+function Login() {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     username: "",
     password: "",
@@ -33,10 +36,19 @@ function Login({ onLogin }) {
     
     try {
       const response = await loginUser(formData);
+      localStorage.setItem('user', JSON.stringify(response));
       console.log(response)
 
       if ('user_id' in response) {
-        onLogin(response);
+        if (response.tipo_jurisdiccion){
+          navigate(`/${response.tipo_jurisdiccion.toLowerCase()}/${response.nombre_jurisdiccion.toLowerCase()}`);
+        }
+        else {
+          navigate('/regiones/');
+        }
+
+//        onLogin(response);
+
       } else {
         showAlert("Usuario o contraseña incorrecta");
       }
