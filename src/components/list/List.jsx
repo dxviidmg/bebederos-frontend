@@ -12,8 +12,8 @@ const List = ({ data, type, title }) => {
             <Link to={`/${type}/${item.slug}`}>
               {" "}
               <Image src={item.image} className="img-fluid" rounded />
-              <h2>{item.texto}</h2>
-              <h3>{item.nombre}</h3>
+              <h2 style={{color: item.color}}>{item.texto}</h2>
+              <h3 style={{color: item.color}}>{item.nombre}</h3>
             </Link>
           </Col>
         ))}

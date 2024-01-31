@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { Container } from "react-bootstrap";
 import DataTable from "react-data-table-component";
+import Form from "react-bootstrap/Form";
 
-const Table = ({ columns, data }) => {
+const CustomTable = ({ columns, data}) => {
   const [filterText, setFilterText] = useState("");
 
   const handleFilterChange = (e) => {
@@ -17,15 +18,17 @@ const Table = ({ columns, data }) => {
 
   return (
     <Container>
-      <input
+        <h3>Escuelas</h3>
+      <Form.Control
         type="text"
-        placeholder="Filter by name or age..."
         value={filterText}
         onChange={handleFilterChange}
+        placeholder="Buscar..."
       />
+
       <DataTable columns={columns} data={filteredData} pagination />
     </Container>
   );
 };
 
-export default Table;
+export default CustomTable;

@@ -14,12 +14,11 @@ function App() {
     <Router>
       <Routes>
       <Route path="/regiones" element={<Regions/>} />
-        <Route path="/login" element={<Login/>} />
-        <Route path="/" element={<Login/>} />
-
         <Route path="/region/:slug" element={<Region/>} />
         <Route path="/entidad/:slug" element={<Entidad/>} />
         <Route path="/convocatoria/:slug" element={<Convocatoria/>} />
+        <Route path="/" element={<Login/>} />
+
       </Routes>
     </Router>
   );
