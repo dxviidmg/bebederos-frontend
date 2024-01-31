@@ -7,6 +7,7 @@ import Table from 'react-bootstrap/Table';
 
 const Convocatoria = () => {
   const [escuelas, setEscuelas] = useState([]);
+  const [documentos, setDocumentos] = useState([]);
   const [data, setData] = useState([]);
   const [escuelasContratadas, setEscuelasContratadas] = useState(0);
   const { slug } = useParams();
@@ -18,6 +19,7 @@ const Convocatoria = () => {
         console.log('=>', data);
         setData(data.nombre);
         setEscuelas(data.escuelas)
+        setDocumentos(data.documentos)
         setEscuelasContratadas(data.escuelas_contratadas)
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -60,6 +62,27 @@ const Convocatoria = () => {
       </Container>
       
       <CustomTable
+        title="Bitacora"
+        data={documentos}
+        columns={[
+          {
+            name: "Nombre",
+            selector: (row) => row.nombre,
+          },
+          {
+            name: "Fecha",
+            selector: (row) => row.fecha,
+          },
+          {
+            name: "Autor",
+            selector: (row) => row.autor,
+          },
+        ]}
+      />
+
+
+      <CustomTable
+        title="Escuelas"
         data={escuelas}
         columns={[
           {
@@ -69,6 +92,7 @@ const Convocatoria = () => {
           {
             name: "CCT Anterior",
             selector: (row) => row.cct_anterior,
+            sortable: true,
           },
           {
             name: "CCT",
@@ -91,7 +115,7 @@ const Convocatoria = () => {
             selector: (row) => row.mueble,
           },
           {
-            name: "SP",
+            name: "Sistema Potabilizador",
             selector: (row) => row.sistema_potabilizador,
           },
         ]}

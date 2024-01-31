@@ -3,7 +3,7 @@ import { Container } from "react-bootstrap";
 import DataTable from "react-data-table-component";
 import Form from "react-bootstrap/Form";
 
-const CustomTable = ({ columns, data}) => {
+const CustomTable = ({ columns, data, title}) => {
   const [filterText, setFilterText] = useState("");
 
   const handleFilterChange = (e) => {
@@ -18,7 +18,7 @@ const CustomTable = ({ columns, data}) => {
 
   return (
     <Container>
-        <h3>Escuelas</h3>
+        <h3>{title}</h3>
       <Form.Control
         type="text"
         value={filterText}
@@ -26,7 +26,7 @@ const CustomTable = ({ columns, data}) => {
         placeholder="Buscar..."
       />
 
-      <DataTable columns={columns} data={filteredData} pagination />
+      <DataTable columns={columns} data={filteredData} pagination={data.length > 10 ? true : false} />
     </Container>
   );
 };
