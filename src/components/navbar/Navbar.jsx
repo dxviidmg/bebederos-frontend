@@ -1,14 +1,48 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
-
+import { useNavigate } from 'react-router-dom';
 
 
 const CustomNavbar = () => {
+    const navigate = useNavigate();
+    const [user, setUser] = useState({})
+
+    useEffect(() => {
+        let u = localStorage.getItem("user");
+        setUser(u)
+        console.log('ux', u)
+
+        console.log('entro aqui')
+    
+      }, [user]);
+
+
+    const handleHome = () => {
+        console.log('to home')
+        let u = JSON.parse(localStorage.getItem("user"));
+        console.log(u)
+        if (u.tipo_jurisdiccion){
+            navigate(`/${u.tipo_jurisdiccion.toLowerCase()}/${u.nombre_jurisdiccion.toLowerCase()}`);
+          }
+          else {
+            navigate('/regiones/');
+          }
+
+
+          
+    
+    }
+
+
+    const handleLogout = () => {
+        localStorage.removeItem("user")
+    }
+
   return (
     <Navbar expand="lg" className="bg-body-tertiary">
       <Container fluid>
@@ -20,21 +54,8 @@ const CustomNavbar = () => {
             style={{ maxHeight: '100px' }}
             navbarScroll
           >
-            <Nav.Link href="#action1">Home</Nav.Link>
-            <Nav.Link href="#action2">Link</Nav.Link>
-            <NavDropdown title="Link" id="navbarScrollingDropdown">
-              <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
-              <NavDropdown.Item href="#action4">
-                Another action
-              </NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item href="#action5">
-                Something else here
-              </NavDropdown.Item>
-            </NavDropdown>
-            <Nav.Link href="#" disabled>
-              Link
-            </Nav.Link>
+            <Nav.Link onClick={handleHome}>Home</Nav.Link>
+            <Nav.Link href="/" onClick={handleLogout}>Salir</Nav.Link>
           </Nav>
           <Form className="d-flex">
             <Form.Control

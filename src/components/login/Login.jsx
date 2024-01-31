@@ -40,6 +40,7 @@ function Login() {
       console.log(response)
 
       if ('user_id' in response) {
+        
         if (response.tipo_jurisdiccion){
           navigate(`/${response.tipo_jurisdiccion.toLowerCase()}/${response.nombre_jurisdiccion.toLowerCase()}`);
         }

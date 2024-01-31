@@ -18,7 +18,7 @@ const CustomTable = ({ columns, data, title}) => {
 
   return (
     <Container>
-        <h3>{title}</h3>
+        <h2>{title}</h2>
       <Form.Control
         type="text"
         value={filterText}
