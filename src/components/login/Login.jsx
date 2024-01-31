@@ -46,9 +46,6 @@ function Login() {
         else {
           navigate('/regiones/');
         }
-
-//        onLogin(response);
-
       } else {
         showAlert("Usuario o contraseña incorrecta");
       }

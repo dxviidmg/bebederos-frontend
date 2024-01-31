@@ -8,11 +8,13 @@ import Region from './components/region/Region';
 import Entidad from './components/entidad/Entidad';
 import Convocatoria from './components/convocatoria/Convocatoria';
 import Escuela from './components/escuela/Escuela';
+import CustomNavbar from './components/navbar/Navbar';
 
 
 function App() {
   return (
     <Router>
+      <CustomNavbar/>
       <Routes>
       <Route path="/regiones" element={<Regions/>} />
         <Route path="/region/:slug" element={<Region/>} />
