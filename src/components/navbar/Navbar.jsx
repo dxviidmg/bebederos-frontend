@@ -14,18 +14,12 @@ const CustomNavbar = () => {
 
     useEffect(() => {
         let u = localStorage.getItem("user");
-        setUser(u)
-        console.log('ux', u)
-
-        console.log('entro aqui')
-    
+        setUser(u)    
       }, [user]);
 
 
     const handleHome = () => {
-        console.log('to home')
         let u = JSON.parse(localStorage.getItem("user"));
-        console.log(u)
         if (u.tipo_jurisdiccion){
             navigate(`/${u.tipo_jurisdiccion.toLowerCase()}/${u.nombre_jurisdiccion.toLowerCase()}`);
           }
