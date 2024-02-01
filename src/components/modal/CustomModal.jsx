@@ -5,8 +5,7 @@ import { createDocumentoConvocatoria } from "../apis/documento_convocatoria";
 const CustomModal = ({ show, handleClose, createRecord, id }) => {
   const [formData, setFormData] = useState({
     nombre: "",
-    archivo: "",
-    autor: "test"
+    archivo: ""
   });
 
   const handleInputChange = (e) => {
