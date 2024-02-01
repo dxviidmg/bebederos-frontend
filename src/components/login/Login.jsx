@@ -4,7 +4,7 @@ import { loginUser } from "../apis/login";
 import { useNavigate } from 'react-router-dom';
 
 
-function Login() {
+function Login({onLogin}) {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     username: "",
@@ -40,7 +40,7 @@ function Login() {
       console.log(response)
 
       if ('user_id' in response) {
-        
+        onLogin(response)
         if (response.tipo_jurisdiccion){
           navigate(`/${response.tipo_jurisdiccion.toLowerCase()}/${response.nombre_jurisdiccion.toLowerCase()}`);
         }
