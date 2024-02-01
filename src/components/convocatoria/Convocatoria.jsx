@@ -2,10 +2,10 @@ import React, { useEffect, useState } from "react";
 import { getConvocatoriaDetail } from "../apis/convocatoria";
 import { useParams } from "react-router-dom";
 import CustomTable from "../table/Table";
-import { Container } from "react-bootstrap";
+import { Container, Button } from "react-bootstrap";
 import Table from "react-bootstrap/Table";
 import { Link } from "react-router-dom";
-
+import CustomModal from "../modal/CustomModal";
 
 const Convocatoria = () => {
   const [escuelas, setEscuelas] = useState([]);
@@ -19,7 +19,7 @@ const Convocatoria = () => {
       try {
         const data = await getConvocatoriaDetail(slug);
         console.log("=>", data);
-        setData(data.nombre);
+        setData(data);
         setEscuelas(data.escuelas);
         setDocumentos(data.documentos);
         setEscuelasContratadas(data.escuelas_contratadas);
@@ -35,10 +35,28 @@ const Convocatoria = () => {
     };
   }, [slug]);
 
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [records, setRecords] = useState([]);
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
+  const createRecord = (newRecord) => {
+    setRecords([...records, newRecord]);
+  };
+
+
   return (
     <div>
       <Container>
-        <h1>{data}</h1>
+      <CustomModal show={isModalOpen} handleClose={closeModal} createRecord={createRecord} id={data.id}/>
+        <h1>{data.nombre}</h1>
 
         <Table striped bordered hover>
           <thead>
@@ -58,8 +76,10 @@ const Convocatoria = () => {
             </tr>
           </tbody>
         </Table>
+        <Button variant="primary" onClick={openModal}>
+        Crear Nuevo Registro
+      </Button>
       </Container>
-
       <CustomTable
         title="Bitacora"
         data={documentos}

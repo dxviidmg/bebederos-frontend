@@ -2,37 +2,38 @@ import React, { useState } from "react";
 import { Modal, Button, Form } from "react-bootstrap";
 import { createDocumentoConvocatoria } from "../apis/documento_convocatoria";
 
-
 const CustomModal = ({ show, handleClose, createRecord, id }) => {
-  const [formData, setFormData] = useState({nombre: undefined,
-    archivo: undefined
-
+  const [formData, setFormData] = useState({
+    nombre: "",
+    archivo: "",
+    autor: "test"
   });
 
   const handleInputChange = (e) => {
-    console.log('id', id)
-    console.log('e', e.target.value)
-    setFormData(e.target.value);
-
-
     const { name, value } = e.target;
+
     setFormData((prevData) => ({
       ...prevData,
       [name]: value,
     }));
-
   };
 
-
-
+  const handleFileChange = (e) => {
+    console.log('entre hfc')
+    const { name, files } = e.target;
+    console.log('f', files)
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: files[0], // Use the first file for simplicity
+    }));
+  };
 
   const handleCreate = () => {
-    createDocumentoConvocatoria(formData)    
-//    createRecord(newRecord);
-    setFormData({nombre: undefined,
-      archivo: undefined
-  
-    });
+    let aux = formData
+    aux['entidad_convocatoria'] = id
+    setFormData(aux);
+    createDocumentoConvocatoria(formData);
+    setFormData({ nombre: "", archivo: "" });
     handleClose();
   };
 
@@ -50,12 +51,15 @@ const CustomModal = ({ show, handleClose, createRecord, id }) => {
             value={formData.nombre}
             onChange={handleInputChange}
             name="nombre"
-/>
-
-          <Form.Group controlId="formFile" className="mb-3">
-            <Form.Label>Documento</Form.Label>
-            <Form.Control type="file" name="archivo" value={formData.archivo}/>
-          </Form.Group>
+          />
+        </Form.Group>
+        <Form.Group controlId="formFile" className="mb-3">
+          <Form.Label>Documento</Form.Label>
+          <Form.Control
+            type="file"
+            name="archivo"
+            onChange={handleFileChange}
+          />
         </Form.Group>
       </Modal.Body>
       <Modal.Footer>
