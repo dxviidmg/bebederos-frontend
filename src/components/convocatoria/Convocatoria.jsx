@@ -37,8 +37,6 @@ const Convocatoria = () => {
 
 
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [records, setRecords] = useState([]);
-
   const openModal = () => {
     setIsModalOpen(true);
   };
@@ -47,15 +45,15 @@ const Convocatoria = () => {
     setIsModalOpen(false);
   };
 
-  const createRecord = (newRecord) => {
-    setRecords([...records, newRecord]);
+  const updateDocumentos = (documento) => {
+    setDocumentos([...documentos, documento]);
   };
 
 
   return (
     <div>
       <Container>
-      <CustomModal show={isModalOpen} handleClose={closeModal} createRecord={createRecord} id={data.id}/>
+      <CustomModal show={isModalOpen} handleClose={closeModal} updateDocumentos={updateDocumentos} id={data.id}/>
         <h1>{data.nombre}</h1>
 
         <Table striped bordered hover>

@@ -4,19 +4,18 @@ import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import NavDropdown from 'react-bootstrap/NavDropdown';
 import { useNavigate } from 'react-router-dom';
 
 
 const CustomNavbar = () => {
     const navigate = useNavigate();
     const [user, setUser] = useState({})
+    const [color, setColor] = useState("")
 
     useEffect(() => {
         let u = localStorage.getItem("user");
         setUser(u)    
       }, [user]);
-
 
     const handleHome = () => {
         let u = JSON.parse(localStorage.getItem("user"));

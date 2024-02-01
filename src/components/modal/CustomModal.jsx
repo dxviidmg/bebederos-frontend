@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Modal, Button, Form } from "react-bootstrap";
 import { createDocumentoConvocatoria } from "../apis/documento_convocatoria";
 
-const CustomModal = ({ show, handleClose, createRecord, id }) => {
+const CustomModal = ({ show, handleClose, updateDocumentos, id }) => {
   const [formData, setFormData] = useState({
     nombre: "",
     archivo: ""
@@ -27,19 +27,31 @@ const CustomModal = ({ show, handleClose, createRecord, id }) => {
     }));
   };
 
-  const handleCreate = () => {
-    let aux = formData
-    aux['entidad_convocatoria'] = id
+  const handleCreate = async () => {
+    let aux = formData;
+    aux['entidad_convocatoria'] = id;
     setFormData(aux);
-    createDocumentoConvocatoria(formData);
-    setFormData({ nombre: "", archivo: "" });
-    handleClose();
+  
+    try {
+      let documento = await createDocumentoConvocatoria(formData);
+      console.log('n doc', documento);
+  
+      // Aquí puedes continuar con el resto del código que depende de documento
+  
+      updateDocumentos(documento);
+      setFormData({ nombre: "", archivo: "" });
+      handleClose();
+    } catch (error) {
+      // Manejar errores si la operación asíncrona falla
+      console.error('Error al crear el documento:', error);
+    }
   };
+  
 
   return (
     <Modal show={show} onHide={handleClose}>
       <Modal.Header closeButton>
-        <Modal.Title>Crear Nuevo Registro</Modal.Title>
+        <Modal.Title>Crear Documento</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <Form.Group controlId="formNewRecord">
