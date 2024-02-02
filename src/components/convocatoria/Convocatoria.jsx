@@ -72,7 +72,7 @@ const Convocatoria = () => {
           </tbody>
         </Table>
         <Button variant="primary" onClick={openModal}>
-        Crear Nuevo Registro
+        Nueva nota de bitacora
       </Button>
       </Container>
       <CustomTable
