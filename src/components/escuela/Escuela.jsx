@@ -37,9 +37,9 @@ const Escuela = () => {
   }, [slug]);
 
   return (
-    <>
-    <Container>
-      <h1>
+    <div className="padding">
+    <Container >
+      <h1 className="text-center">
         {escuela.cct} {escuela.nombre}
       </h1>
       <h2>Información general</h2>
@@ -175,7 +175,7 @@ columns={[
 />
 
 
-</>
+</div>
   );
 };
 

@@ -10,12 +10,29 @@ import { useNavigate } from 'react-router-dom';
 const CustomNavbar = () => {
     const navigate = useNavigate();
     const [user, setUser] = useState({})
-    const [color, setColor] = useState("")
+    const [color, setColor] = useState("#78dd0e")
 
     useEffect(() => {
         let u = localStorage.getItem("user");
         setUser(u)    
       }, [user]);
+
+
+      useEffect(() => {
+        // Función que se ejecutará en cada intervalo
+        const handleInterval = () => {
+          setColor(localStorage.getItem('color') || '');
+        };
+    
+        // Configurar un intervalo que ejecute handleInterval cada segundo (ajusta según tus necesidades)
+        const intervalId = setInterval(handleInterval, 800);
+    
+        // Limpia el intervalo cuando el componente se desmonta
+        return () => {
+          clearInterval(intervalId);
+        };
+      }, []);
+
 
     const handleHome = () => {
         let u = JSON.parse(localStorage.getItem("user"));
@@ -37,8 +54,8 @@ const CustomNavbar = () => {
     }
 
   return (
-    <Navbar expand="lg" className="bg-body-tertiary">
-      <Container fluid>
+    <Navbar expand="lg" style={{backgroundColor: color}}>
+      <Container fluid >
         <Navbar.Brand href="#">Bebederos escolares</Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">

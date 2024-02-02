@@ -5,11 +5,17 @@ import List from "../list/List";
 const Regions = () => {
   const [regions, setRegions] = useState([]);
 
+  const getRandomInt = (max) => {
+    return Math.floor(Math.random() * max);
+  }
+
+
   useEffect(() => {
     const fetchData = async () => {
       try {
         const data = await getRegionsList();
-        console.log(data);
+        localStorage.setItem("color", data[getRandomInt(data.length)].color);
+
         setRegions(data);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -24,7 +30,7 @@ const Regions = () => {
   }, []);
 
   return (
-    <div>
+    <div className="padding">
       <List data={regions} type="region"  title="Regiones"></List>
     </div>
   );

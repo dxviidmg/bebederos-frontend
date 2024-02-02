@@ -7,6 +7,7 @@ import Table from "react-bootstrap/Table";
 import { Link } from "react-router-dom";
 import CustomModal from "../modal/CustomModal";
 
+
 const Convocatoria = () => {
   const [escuelas, setEscuelas] = useState([]);
   const [documentos, setDocumentos] = useState([]);
@@ -51,24 +52,20 @@ const Convocatoria = () => {
 
 
   return (
-    <div>
+    <div className="padding">
       <Container>
       <CustomModal show={isModalOpen} handleClose={closeModal} updateDocumentos={updateDocumentos} id={data.id}/>
-        <h1>{data.nombre}</h1>
+        <h1 className="text-center">{data.nombre}</h1>
 
         <Table striped bordered hover>
           <thead>
             <tr>
-              <th>Region</th>
-              <th>Partida</th>
               <th>Escuelas contratadas</th>
               <th>Escuelas registradas</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td>1</td>
-              <td>Mark</td>
               <td>{escuelasContratadas} </td>
               <td>{escuelas.length}</td>
             </tr>
