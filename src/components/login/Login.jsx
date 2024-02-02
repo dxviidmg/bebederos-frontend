@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Container, Row, Col, Alert } from "react-bootstrap";
 import { loginUser } from "../apis/login";
 import { useNavigate } from 'react-router-dom';
-
+import './login.css'
 
 function Login({onLogin}) {
   const navigate = useNavigate();
@@ -61,12 +61,13 @@ function Login({onLogin}) {
   };
 
   return (
+    <div id="login">
     <Container>
       <Row className="justify-content-center">
-        <Col md={6} lg={3}>
+        <Col md={6} lg={3} id="login-col" className="d-flex align-items-center">
           <form className="Auth-form">
             <div className="Auth-form-content">
-              <h3 className="Auth-form-title">Iniciar sesión</h3>
+              <h3 className="Auth-form-title text-center">Iniciar sesión</h3>
               <div className="form-group mt-3">
                 <label>Usuario</label>
                 <input
@@ -94,7 +95,7 @@ function Login({onLogin}) {
               <div className="d-grid gap-2 mt-3">
                 <button
                   type="submit"
-                  className="btn btn-primary"
+                  className="btn btn-success"
                   onClick={handleSubmit}
                 >
                   Iniciar sesión
@@ -110,6 +111,7 @@ function Login({onLogin}) {
         </Col>
       </Row>
     </Container>
+    </div>
   );
 }
 
