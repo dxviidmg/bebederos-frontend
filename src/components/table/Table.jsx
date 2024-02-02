@@ -24,15 +24,16 @@ const CustomTable = ({ columns, data, title }) => {
     },
   };
   return (
-    <Container>
+    <Container style={{marginTop: '20px'}}>
       <h2>{title}</h2>
+
       <Form.Control
         type="text"
         value={filterText}
         onChange={handleFilterChange}
         placeholder="Buscar..."
       />
-
+      <br/>
       <DataTable
         columns={columns}
         data={filteredData}

@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
-import Form from 'react-bootstrap/Form';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { useNavigate } from 'react-router-dom';
@@ -65,6 +63,7 @@ const CustomNavbar = () => {
             navbarScroll
           >
             <Nav.Link onClick={handleHome}>Home</Nav.Link>
+            <Nav.Link href="/escuelas/">Escuelas</Nav.Link>
             <Nav.Link href="/" onClick={handleLogout}>Salir</Nav.Link>
           </Nav>
         </Navbar.Collapse>
