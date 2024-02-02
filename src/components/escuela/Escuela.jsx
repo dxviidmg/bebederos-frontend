@@ -5,25 +5,32 @@ import CustomTable from "../table/Table";
 import { Row, Col, Container } from "react-bootstrap";
 import Table from "react-bootstrap/Table";
 import Button from "react-bootstrap/Button";
+import { getExpedienteFileMeanings } from "../apis/expedientes_significado";
 
 const Escuela = () => {
   const [escuela, setEscuela] = useState({});
   const [expediente, setExpediente] = useState([]);
   const [incidencias, setIncidencias] = useState([]);
   const [mantenimientos, setMantenimientos] = useState([]);
+  const [fileMeanings, setFileMeanings] = useState([]);
+  const [color, setColor] = useState("")
   const { slug } = useParams();
 
   useEffect(() => {
     const fetchData = async () => {
+      setColor(localStorage.getItem('color'));
       try {
         const data = await getEscuelaDetail(slug);
+        const data2 = await getExpedienteFileMeanings();
         console.log("=>", data);
+        console.log("=>", data2);
         setEscuela(data)
         if (data.expediente){
           setExpediente(data.expediente)
         }
         setIncidencias(data.incidencias)
         setMantenimientos(data.mantenimientos)
+        setFileMeanings(data2)
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -36,6 +43,13 @@ const Escuela = () => {
     };
   }, [slug]);
 
+  const styles = {
+    th: {
+      backgroundColor: color,
+    },
+  };
+
+
   return (
     <div className="padding">
     <Container >
@@ -46,10 +60,10 @@ const Escuela = () => {
       <Table striped bordered hover>
         <thead>
           <tr>
-            <th>#</th>
-            <th>Año</th>
-            <th>Nivel Educativo</th>
-            <th>Plantilla</th>
+            <th style={styles.th}>#</th>
+            <th style={styles.th}>Año</th>
+            <th style={styles.th}>Nivel Educativo</th>
+            <th style={styles.th}>Plantilla</th>
           </tr>
         </thead>
         <tbody>
@@ -66,29 +80,29 @@ const Escuela = () => {
       <Table striped bordered hover>
         <thead>
           <tr>
-            <th>Domicilio</th>
-            <th>Localidad</th>
-            <th>Municipio</th>
-            <th>Entidad</th>
+            <th style={styles.th}>Domicilio</th>
+            <th style={styles.th}>Localidad</th>
+            <th style={styles.th}>Municipio</th>
+            <th style={styles.th}>Entidad</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td>{escuela.domicilio}</td>
-            <td>{escuela.localidad}</td>
-            <td>{escuela.municipio}</td>
-            <td>{escuela.entidad}</td>
+            <td >{escuela.domicilio}</td>
+            <td >{escuela.localidad}</td>
+            <td >{escuela.municipio}</td>
+            <td >{escuela.entidad}</td>
           </tr>
         </tbody>
       </Table>
 
       <h2>Información del mueble</h2>
       <Table striped bordered hover>
-        <thead>
-          <tr>
-            <th>Mueble</th>
-            <th>Sistema Potabilizador</th>
-            <th>Manual</th>
+        <thead >
+          <tr >
+            <th style={styles.th}>Mueble</th>
+            <th style={styles.th}>Sistema Potabilizador</th>
+            <th style={styles.th}>Manual</th>
           </tr>
         </thead>
         <tbody>
@@ -107,8 +121,8 @@ const Escuela = () => {
       <Row>
         {Object.keys(expediente).map((key) =>
           expediente[key] ? (
-            <Col md={4} key={key}>
-              <Button href={expediente[key]}>{key}</Button>
+            <Col md={3} key={key}>
+              <Button href={expediente[key]} style={{marginBottom: "10px", height: "85%", background: color}}>{fileMeanings[key]}</Button>
             </Col>
           ) : null
         )}
