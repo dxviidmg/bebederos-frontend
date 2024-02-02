@@ -13,11 +13,15 @@ const Convocatoria = () => {
   const [documentos, setDocumentos] = useState([]);
   const [data, setData] = useState([]);
   const [escuelasContratadas, setEscuelasContratadas] = useState(0);
+  const [color, setColor] = useState("")
+
+
   const { slug } = useParams();
 
   useEffect(() => {
     const fetchData = async () => {
       try {
+        setColor(localStorage.getItem('color'));
         const data = await getConvocatoriaDetail(slug);
         console.log("=>", data);
         setData(data);
@@ -50,6 +54,11 @@ const Convocatoria = () => {
     setDocumentos([...documentos, documento]);
   };
 
+  const styles = {
+    th: {
+      backgroundColor: color,
+    },
+  };
 
   return (
     <div className="padding">
@@ -60,8 +69,8 @@ const Convocatoria = () => {
         <Table striped bordered hover>
           <thead>
             <tr>
-              <th>Escuelas contratadas</th>
-              <th>Escuelas registradas</th>
+              <th style={styles.th} >Escuelas contratadas</th>
+              <th style={styles.th}>Escuelas registradas</th>
             </tr>
           </thead>
           <tbody>
@@ -71,7 +80,7 @@ const Convocatoria = () => {
             </tr>
           </tbody>
         </Table>
-        <Button variant="primary" onClick={openModal}>
+        <Button variant="primary" style={{backgroundColor: localStorage.getItem('color')}} onClick={openModal}>
         Nueva nota de bitacora
       </Button>
       </Container>
