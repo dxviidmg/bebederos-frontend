@@ -17,6 +17,7 @@ const Region = () => {
         console.log(data);
         setEntidades(data.entidades);
         setTitle(data.texto + ": " + data.nombre)
+        localStorage.setItem("color", data.color);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -30,7 +31,7 @@ const Region = () => {
   }, [slug]);
 
   return (
-    <div>
+    <div className="padding">
       <List data={entidades} type="entidad" title={title}></List>
     </div>
   );

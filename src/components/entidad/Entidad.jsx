@@ -7,7 +7,6 @@ import { useParams } from "react-router-dom";
 const Entidad = () => {
   const [convocatorias, setConvocatorias] = useState([]);
   const [title, setTitle] = useState("");
-  const [color, setColor] = useState("");
 
   const { slug } = useParams();
 
@@ -18,7 +17,8 @@ const Entidad = () => {
         const data = await getEntidadDetail(slug);
         setConvocatorias(data.convocatorias);
         setTitle(data.texto + ": " + data.nombre)
-        setColor(data.color)
+        localStorage.setItem("color", data.color);
+
     } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -32,8 +32,8 @@ const Entidad = () => {
   }, [slug]);
 
   return (
-    <div>
-      <List data={convocatorias} type="convocatoria" title={title} color={color}></List>
+    <div className="padding">
+      <List data={convocatorias} type="convocatoria" title={title}></List>
     </div>
   );
 };
