@@ -94,7 +94,7 @@ const Convocatoria = () => {
           },
           {
             name: "Fecha",
-            selector: (row) => row.fecha,
+            selector: (row) => row.fecha_formateada,
           },
           {
             name: "Autor",
