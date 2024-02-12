@@ -22,8 +22,6 @@ const Escuela = () => {
       try {
         const data = await getEscuelaDetail(slug);
         const data2 = await getExpedienteFileMeanings();
-        console.log("=>", data);
-        console.log("=>", data2);
         setEscuela(data)
         if (data.expediente){
           setExpediente(data.expediente)

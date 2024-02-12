@@ -18,9 +18,7 @@ const CustomModal = ({ show, handleClose, updateDocumentos, id }) => {
   };
 
   const handleFileChange = (e) => {
-    console.log('entre hfc')
     const { name, files } = e.target;
-    console.log('f', files)
     setFormData((prevData) => ({
       ...prevData,
       [name]: files[0], // Use the first file for simplicity
@@ -33,9 +31,7 @@ const CustomModal = ({ show, handleClose, updateDocumentos, id }) => {
     setFormData(aux);
   
     try {
-      let documento = await createDocumentoConvocatoria(formData);
-      console.log('n doc', documento);
-  
+      let documento = await createDocumentoConvocatoria(formData);  
       // Aquí puedes continuar con el resto del código que depende de documento
   
       updateDocumentos(documento);

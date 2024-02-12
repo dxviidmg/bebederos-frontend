@@ -14,7 +14,6 @@ const Region = () => {
     const fetchData = async () => {
       try {
         const data = await getRegionDetail(slug);
-        console.log(data);
         setEntidades(data.entidades);
         setTitle(data.texto + ": " + data.nombre)
         localStorage.setItem("color", data.color);
