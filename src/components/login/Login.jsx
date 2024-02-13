@@ -40,13 +40,9 @@ function Login({ onLogin }) {
     // Chequear si hay un token en el almacenamiento local
 
     // Create a new Date object using the dateString
-    console.log('entertainmentStreamingSED', entertainmentStreamingSED)
     const expirationDate = new Date(entertainmentStreamingSED);
     const currentDate = new Date();
 
-    console.log('expirationDate', expirationDate)
-    console.log('currentDate', currentDate)
-    console.log('condition date', currentDate.getDate() <= expirationDate.getDate())
     setCanLogin(currentDate.getDate() <= expirationDate.getDate());
   }, []);
 
