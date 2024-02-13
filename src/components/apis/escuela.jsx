@@ -12,7 +12,6 @@ export const getEscuelaDetail = async (slug) => {
         "Authorization": `Token ${user.token}`,
       },
     });
-    console.log(response.data)
     return response.data;
   } catch (error) {
     return error;
@@ -29,7 +28,6 @@ export const getEscuelaList = async () => {
         "Authorization": `Token ${user.token}`,
       },
     });
-    console.log(response.data)
     return response.data;
   } catch (error) {
     return error;

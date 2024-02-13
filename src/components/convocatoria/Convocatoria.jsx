@@ -23,7 +23,6 @@ const Convocatoria = () => {
       try {
         setColor(localStorage.getItem('color'));
         const data = await getConvocatoriaDetail(slug);
-        console.log("=>", data);
         setData(data);
         setEscuelas(data.escuelas);
         setDocumentos(data.documentos);

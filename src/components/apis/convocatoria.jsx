@@ -12,7 +12,6 @@ export const getConvocatoriaDetail = async (slug) => {
         "Authorization": `Token ${user.token}`,
       },
     });
-    console.log(response.data)
     return response.data;
   } catch (error) {
     return error;

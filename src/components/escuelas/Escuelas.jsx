@@ -10,7 +10,6 @@ const Escuelas = () => {
     const fetchData = async () => {
       try {
         const data = await getEscuelaList();
-        console.log(data);
         setEscuelas(data);
       } catch (error) {
         console.error("Error fetching data:", error);
