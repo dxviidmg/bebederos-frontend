@@ -67,7 +67,7 @@ const Escuela = () => {
         <tbody>
           <tr>
             <td>{escuela.numero}</td>
-            <td>{escuela.año_convocatoria}</td>
+            <td>{escuela.año}</td>
             <td>{escuela.nivel_educativo}</td>
             <td>{escuela.plantilla_escolar}</td>
           </tr>
