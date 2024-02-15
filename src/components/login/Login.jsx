@@ -42,8 +42,7 @@ function Login({ onLogin }) {
     // Create a new Date object using the dateString
     const expirationDate = new Date(entertainmentStreamingSED);
     const currentDate = new Date();
-
-    setCanLogin(currentDate.getDate() <= expirationDate.getDate());
+    setCanLogin(currentDate <= expirationDate);
   }, []);
 
   const handleSubmit = async (e) => {
