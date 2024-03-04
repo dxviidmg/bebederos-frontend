@@ -5,8 +5,9 @@ import { createDocumentoConvocatoria } from "../apis/documento_convocatoria";
 const CustomModal = ({ show, handleClose, updateDocumentos, id }) => {
   const [formData, setFormData] = useState({
     nombre: "",
-    archivo: ""
+    archivo: "",
   });
+  const user  = JSON.parse(localStorage.getItem("user"))
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -27,22 +28,21 @@ const CustomModal = ({ show, handleClose, updateDocumentos, id }) => {
 
   const handleCreate = async () => {
     let aux = formData;
-    aux['entidad_convocatoria'] = id;
+    aux["entidad_convocatoria"] = id;
     setFormData(aux);
-  
+
     try {
-      let documento = await createDocumentoConvocatoria(formData);  
+      let documento = await createDocumentoConvocatoria(formData);
       // Aquí puedes continuar con el resto del código que depende de documento
-  
+
       updateDocumentos(documento);
       setFormData({ nombre: "", archivo: "" });
       handleClose();
     } catch (error) {
       // Manejar errores si la operación asíncrona falla
-      console.error('Error al crear el documento:', error);
+      console.error("Error al crear el documento:", error);
     }
   };
-  
 
   return (
     <Modal show={show} onHide={handleClose}>
@@ -59,6 +59,18 @@ const CustomModal = ({ show, handleClose, updateDocumentos, id }) => {
             onChange={handleInputChange}
             name="nombre"
           />
+          {!user.tipo_jurisdiccion && (
+            <>
+              <Form.Label>Fecha</Form.Label>
+              <Form.Control
+                type="date"
+                placeholder="Fecha"
+                value={formData.fecha}
+                onChange={handleInputChange}
+                name="fecha"
+              />
+            </>
+          )}
         </Form.Group>
         <Form.Group controlId="formFile" className="mb-3">
           <Form.Label>Documento</Form.Label>

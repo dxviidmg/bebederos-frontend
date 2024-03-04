@@ -16,6 +16,7 @@ import { useState, useEffect } from "react";
 import Escuelas from "./components/escuelas/Escuelas";
 
 
+
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
