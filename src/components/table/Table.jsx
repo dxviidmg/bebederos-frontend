@@ -3,7 +3,7 @@ import { Container } from "react-bootstrap";
 import DataTable from "react-data-table-component";
 import Form from "react-bootstrap/Form";
 
-const CustomTable = ({ columns, data, title }) => {
+const CustomTable = ({ columns, data, title, progressPending=false }) => {
   const [filterText, setFilterText] = useState("");
 
   const handleFilterChange = (e) => {
@@ -39,6 +39,8 @@ const CustomTable = ({ columns, data, title }) => {
         data={filteredData}
         pagination={data.length > 10 ? true : false}
         customStyles={customStyles}
+        progressPending={progressPending}
+        noDataComponent="No hay registros para mostrar"
       />
     </Container>
   );
