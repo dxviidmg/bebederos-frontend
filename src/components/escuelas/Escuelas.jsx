@@ -5,12 +5,14 @@ import { Link } from "react-router-dom";
 
 const Escuelas = () => {
   const [escuelas, setEscuelas] = useState([]);
+  const [progressPending, setProgressPending] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const data = await getEscuelaList();
         setEscuelas(data);
+        setProgressPending(false)
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -26,6 +28,7 @@ const Escuelas = () => {
   return (
     <div>
       <CustomTable
+      progressPending={progressPending}
       title={"Buscador de escuelas"}
         data={escuelas}
         columns={[

@@ -14,6 +14,7 @@ const Convocatoria = () => {
   const [data, setData] = useState([]);
   const [escuelasContratadas, setEscuelasContratadas] = useState(0);
   const [color, setColor] = useState("")
+  const [progressPending, setProgressPending] = useState(true);
 
 
   const { slug } = useParams();
@@ -27,6 +28,7 @@ const Convocatoria = () => {
         setEscuelas(data.escuelas);
         setDocumentos(data.documentos);
         setEscuelasContratadas(data.escuelas_contratadas);
+        setProgressPending(false)
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -104,6 +106,7 @@ const Convocatoria = () => {
 
       <CustomTable
         title="Escuelas"
+        progressPending={progressPending}
         data={escuelas}
         columns={[
           {
